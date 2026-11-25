@@ -68,12 +68,19 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function localDateStr(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 function todayStr() {
-    return new Date().toISOString().slice(0, 10);
+    return localDateStr();
 }
 
 function currentMonthStr() {
-    return new Date().toISOString().slice(0, 7);
+    return todayStr().slice(0, 7);
 }
 
 // ==========================================
@@ -473,7 +480,7 @@ const DashboardService = {
         } else if (period === 'WEEKLY') {
             const weekAgo = new Date();
             weekAgo.setDate(today.getDate() - 6);
-            const wStr = weekAgo.toISOString().slice(0, 10);
+            const wStr = localDateStr(weekAgo);
             filteredIncomes = allIncomes.filter(i => i.incomeDate >= wStr);
             filteredExpenses = allExpenses.filter(e => e.expenseDate >= wStr);
         } else if (period === 'MONTHLY') {
@@ -496,7 +503,7 @@ const DashboardService = {
         const monthlyComparison = [];
         for (let i = 5; i >= 0; i--) {
             const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
-            const ym = d.toISOString().slice(0, 7);
+            const ym = localDateStr(d).slice(0, 7);
             const inc = allIncomes.filter(x => x.incomeDate.startsWith(ym)).reduce((s, x) => s + Number(x.amount), 0);
             const exp = allExpenses.filter(x => x.expenseDate.startsWith(ym)).reduce((s, x) => s + Number(x.amount), 0);
             monthlyComparison.push({ month: ym, income: inc, expenses: exp });

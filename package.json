@@ -4,7 +4,7 @@
   "description": "Modern Personal Expense Tracker with Dashboard, Interactive Charts, and Local Storage",
   "main": "index.html",
   "scripts": {
-    "build": "echo \"Build completed successfully.\"",
+    "build": "node --check js/app.js",
     "start": "npx serve ."
   },
   "keywords": [
