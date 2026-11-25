@@ -33,4 +33,3 @@ public class BudgetController {
         return budgetService.listAll();
     }
 }
-

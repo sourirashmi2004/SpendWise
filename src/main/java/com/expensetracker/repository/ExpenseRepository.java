@@ -14,7 +14,8 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     Optional<Expense> findByIdAndUserId(Long id, Long userId);
 
-    List<Expense> findByUserIdAndExpenseDateBetweenOrderByExpenseDateDescIdDesc(Long userId, LocalDate start, LocalDate end);
+    List<Expense> findByUserIdAndExpenseDateBetweenOrderByExpenseDateDescIdDesc(Long userId, LocalDate start,
+            LocalDate end);
 
     @Query("SELECT COALESCE(SUM(e.amount), 0) FROM Expense e WHERE e.user.id = :userId")
     BigDecimal sumTotalByUserId(Long userId);
@@ -22,4 +23,3 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     @Query("SELECT COALESCE(SUM(e.amount), 0) FROM Expense e WHERE e.user.id = :userId AND e.expenseDate BETWEEN :start AND :end")
     BigDecimal sumByUserIdAndDateBetween(Long userId, LocalDate start, LocalDate end);
 }
-

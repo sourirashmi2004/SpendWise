@@ -84,4 +84,3 @@ public class Income {
         this.user = user;
     }
 }
-

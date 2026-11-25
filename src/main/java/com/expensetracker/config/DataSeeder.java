@@ -22,11 +22,11 @@ public class DataSeeder implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
 
     public DataSeeder(CategoryRepository categoryRepository,
-                      UserRepository userRepository,
-                      IncomeRepository incomeRepository,
-                      ExpenseRepository expenseRepository,
-                      BudgetRepository budgetRepository,
-                      PasswordEncoder passwordEncoder) {
+            UserRepository userRepository,
+            IncomeRepository incomeRepository,
+            ExpenseRepository expenseRepository,
+            BudgetRepository budgetRepository,
+            PasswordEncoder passwordEncoder) {
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
         this.incomeRepository = incomeRepository;
@@ -48,7 +48,8 @@ public class DataSeeder implements CommandLineRunner {
                     .orElseGet(() -> categoryRepository.save(new Category(name, CategoryType.INCOME, null)));
         }
 
-        List<String> expenseNames = List.of("Food", "Shopping", "Education", "Transport", "Entertainment", "Bills", "Others");
+        List<String> expenseNames = List.of("Food", "Shopping", "Education", "Transport", "Entertainment", "Bills",
+                "Others");
         for (String name : expenseNames) {
             categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull(name, CategoryType.EXPENSE)
                     .orElseGet(() -> categoryRepository.save(new Category(name, CategoryType.EXPENSE, null)));
@@ -63,15 +64,20 @@ public class DataSeeder implements CommandLineRunner {
         User demo = userRepository.save(new User(
                 "Aarav Sharma",
                 "demo@expensetracker.com",
-                passwordEncoder.encode("demo1234")
-        ));
+                passwordEncoder.encode("demo1234")));
 
-        Category salary = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Salary", CategoryType.INCOME).orElseThrow();
-        Category freelance = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Freelancing", CategoryType.INCOME).orElseThrow();
-        Category food = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Food", CategoryType.EXPENSE).orElseThrow();
-        Category transport = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Transport", CategoryType.EXPENSE).orElseThrow();
-        Category education = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Education", CategoryType.EXPENSE).orElseThrow();
-        Category bills = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Bills", CategoryType.EXPENSE).orElseThrow();
+        Category salary = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Salary", CategoryType.INCOME)
+                .orElseThrow();
+        Category freelance = categoryRepository
+                .findByNameIgnoreCaseAndTypeAndUserIsNull("Freelancing", CategoryType.INCOME).orElseThrow();
+        Category food = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Food", CategoryType.EXPENSE)
+                .orElseThrow();
+        Category transport = categoryRepository
+                .findByNameIgnoreCaseAndTypeAndUserIsNull("Transport", CategoryType.EXPENSE).orElseThrow();
+        Category education = categoryRepository
+                .findByNameIgnoreCaseAndTypeAndUserIsNull("Education", CategoryType.EXPENSE).orElseThrow();
+        Category bills = categoryRepository.findByNameIgnoreCaseAndTypeAndUserIsNull("Bills", CategoryType.EXPENSE)
+                .orElseThrow();
 
         LocalDate today = LocalDate.now();
         YearMonth currentMonth = YearMonth.from(today);
@@ -137,4 +143,3 @@ public class DataSeeder implements CommandLineRunner {
         budgetRepository.save(budget);
     }
 }
-

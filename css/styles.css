@@ -1,0 +1,145 @@
+:root {
+    --brand-primary: #2563eb;
+    --brand-success: #10b981;
+    --brand-danger: #ef4444;
+    --brand-bg: #f8fafc;
+    --brand-card-bg: #ffffff;
+    --brand-border: #e2e8f0;
+}
+
+body {
+    background-color: var(--brand-bg);
+    color: #1e293b;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+    background: radial-gradient(circle at top right, #e0e7ff 0%, #f8fafc 60%);
+}
+
+.feature-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid var(--brand-border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid var(--brand-border);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    transition: transform 0.25s ease-in-out;
+}
+
+.sidebar-brand {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--brand-border);
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: var(--brand-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.sidebar .nav-link {
+    color: #475569;
+    font-weight: 500;
+    padding: 0.65rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    transition: all 0.15s ease-in-out;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f1f5f9;
+    color: var(--brand-primary);
+}
+
+.sidebar .nav-link.active {
+    background-color: #eff6ff;
+    color: var(--brand-primary);
+    font-weight: 600;
+}
+
+.main-content {
+    margin-left: 260px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--brand-border);
+    padding: 0.9rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.kpi-card {
+    background-color: #ffffff;
+    border: 1px solid var(--brand-border);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.kpi-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.chart-box {
+    position: relative;
+    height: 280px;
+    width: 100%;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}

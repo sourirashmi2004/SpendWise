@@ -14,7 +14,8 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
 
     Optional<Income> findByIdAndUserId(Long id, Long userId);
 
-    List<Income> findByUserIdAndIncomeDateBetweenOrderByIncomeDateDescIdDesc(Long userId, LocalDate start, LocalDate end);
+    List<Income> findByUserIdAndIncomeDateBetweenOrderByIncomeDateDescIdDesc(Long userId, LocalDate start,
+            LocalDate end);
 
     @Query("SELECT COALESCE(SUM(i.amount), 0) FROM Income i WHERE i.user.id = :userId")
     BigDecimal sumTotalByUserId(Long userId);
@@ -22,4 +23,3 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     @Query("SELECT COALESCE(SUM(i.amount), 0) FROM Income i WHERE i.user.id = :userId AND i.incomeDate BETWEEN :start AND :end")
     BigDecimal sumByUserIdAndDateBetween(Long userId, LocalDate start, LocalDate end);
 }
-

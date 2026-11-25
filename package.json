@@ -1,0 +1,20 @@
+{
+  "name": "personal-expense-tracker",
+  "version": "1.0.0",
+  "description": "Modern Personal Expense Tracker with Dashboard, Interactive Charts, and Local Storage",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo \"Build completed successfully.\"",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "expense-tracker",
+    "personal-finance",
+    "dashboard",
+    "chartjs",
+    "bootstrap5",
+    "localstorage"
+  ],
+  "author": "SOURIRASHMI SARKAR",
+  "license": "MIT"
+}

@@ -78,8 +78,6 @@ public class IncomeService {
                 i.getDescription(),
                 i.getIncomeDate(),
                 i.getCategory().getId(),
-                i.getCategory().getName()
-        );
+                i.getCategory().getName());
     }
 }
-

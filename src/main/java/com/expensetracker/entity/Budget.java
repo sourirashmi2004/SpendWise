@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(
-    name = "budgets",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "budget_month"})
-)
+@Table(name = "budgets", uniqueConstraints = @UniqueConstraint(columnNames = { "user_id", "budget_month" }))
 public class Budget {
 
     @Id
@@ -52,4 +49,3 @@ public class Budget {
         this.user = user;
     }
 }
-

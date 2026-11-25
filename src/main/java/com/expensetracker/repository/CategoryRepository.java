@@ -18,4 +18,3 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     Optional<Category> findByNameIgnoreCaseAndTypeAndUserIsNull(String name, CategoryType type);
 }
-

@@ -50,11 +50,11 @@ public class DashboardController {
         StringBuilder csv = new StringBuilder("Date,Type,Category,Title,Description,Amount\n");
         for (UnifiedTransactionItem row : rows) {
             csv.append(row.date()).append(',')
-               .append(row.type()).append(',')
-               .append(escapeCsv(row.categoryName())).append(',')
-               .append(escapeCsv(row.title())).append(',')
-               .append(escapeCsv(row.description())).append(',')
-               .append(row.amount()).append('\n');
+                    .append(row.type()).append(',')
+                    .append(escapeCsv(row.categoryName())).append(',')
+                    .append(escapeCsv(row.title())).append(',')
+                    .append(escapeCsv(row.description())).append(',')
+                    .append(row.amount()).append('\n');
         }
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=expense-tracker-report.csv")
@@ -78,4 +78,3 @@ public class DashboardController {
         return "\"" + escaped + "\"";
     }
 }
-

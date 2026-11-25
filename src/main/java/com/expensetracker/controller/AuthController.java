@@ -25,8 +25,8 @@ public class AuthController {
     private final SecurityContextRepository securityContextRepository;
 
     public AuthController(AuthService authService,
-                          AuthenticationManager authenticationManager,
-                          SecurityContextRepository securityContextRepository) {
+            AuthenticationManager authenticationManager,
+            SecurityContextRepository securityContextRepository) {
         this.authService = authService;
         this.authenticationManager = authenticationManager;
         this.securityContextRepository = securityContextRepository;
@@ -34,8 +34,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterRequest request,
-                                                 HttpServletRequest httpRequest,
-                                                 HttpServletResponse httpResponse) {
+            HttpServletRequest httpRequest,
+            HttpServletResponse httpResponse) {
         User user = authService.register(request);
         establishSession(user.getEmail(), request.password(), httpRequest, httpResponse);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -44,8 +44,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserResponse> login(@Valid @RequestBody LoginRequest request,
-                                              HttpServletRequest httpRequest,
-                                              HttpServletResponse httpResponse) {
+            HttpServletRequest httpRequest,
+            HttpServletResponse httpResponse) {
         establishSession(request.email().trim().toLowerCase(), request.password(), httpRequest, httpResponse);
         return ResponseEntity.ok(authService.getSessionStatus());
     }
@@ -61,14 +61,12 @@ public class AuthController {
     }
 
     private void establishSession(String email, String rawPassword,
-                                  HttpServletRequest request, HttpServletResponse response) {
+            HttpServletRequest request, HttpServletResponse response) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(email, rawPassword)
-        );
+                new UsernamePasswordAuthenticationToken(email, rawPassword));
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(authentication);
         SecurityContextHolder.setContext(context);
         securityContextRepository.saveContext(context, request, response);
     }
 }
-

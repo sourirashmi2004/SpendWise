@@ -19,7 +19,8 @@ public class ExpenseService {
     private final CategoryService categoryService;
     private final AuthService authService;
 
-    public ExpenseService(ExpenseRepository expenseRepository, CategoryService categoryService, AuthService authService) {
+    public ExpenseService(ExpenseRepository expenseRepository, CategoryService categoryService,
+            AuthService authService) {
         this.expenseRepository = expenseRepository;
         this.categoryService = categoryService;
         this.authService = authService;
@@ -78,8 +79,6 @@ public class ExpenseService {
                 e.getDescription(),
                 e.getExpenseDate(),
                 e.getCategory().getId(),
-                e.getCategory().getName()
-        );
+                e.getCategory().getName());
     }
 }
-

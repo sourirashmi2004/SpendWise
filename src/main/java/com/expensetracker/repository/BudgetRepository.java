@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
     Optional<Budget> findByUserIdAndBudgetMonth(Long userId, String budgetMonth);
+
     List<Budget> findByUserIdOrderByBudgetMonthDesc(Long userId);
 }
-

@@ -29,8 +29,7 @@ public class AuthService {
         User user = new User(
                 request.fullName().trim(),
                 normalizedEmail,
-                passwordEncoder.encode(request.password())
-        );
+                passwordEncoder.encode(request.password()));
         return userRepository.save(user);
     }
 
@@ -60,4 +59,3 @@ public class AuthService {
         return new UserResponse(true, saved.getId(), saved.getFullName(), saved.getEmail());
     }
 }
-

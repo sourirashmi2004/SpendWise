@@ -25,9 +25,9 @@ public class DashboardService {
     private final AuthService authService;
 
     public DashboardService(IncomeRepository incomeRepository,
-                            ExpenseRepository expenseRepository,
-                            BudgetService budgetService,
-                            AuthService authService) {
+            ExpenseRepository expenseRepository,
+            BudgetService budgetService,
+            AuthService authService) {
         this.incomeRepository = incomeRepository;
         this.expenseRepository = expenseRepository;
         this.budgetService = budgetService;
@@ -68,20 +68,21 @@ public class DashboardService {
                 budget.remainingBudget(),
                 budget.usagePercentage(),
                 budget.alertLevel(),
-                recent
-        );
+                recent);
     }
 
     public List<UnifiedTransactionItem> getTransactions(String type,
-                                                        String category,
-                                                        String search,
-                                                        LocalDate fromDate,
-                                                        LocalDate toDate) {
+            String category,
+            String search,
+            LocalDate fromDate,
+            LocalDate toDate) {
         User user = authService.requireCurrentUser();
         List<UnifiedTransactionItem> items = new ArrayList<>();
 
-        boolean includeIncome = type == null || type.isBlank() || "ALL".equalsIgnoreCase(type) || "INCOME".equalsIgnoreCase(type);
-        boolean includeExpense = type == null || type.isBlank() || "ALL".equalsIgnoreCase(type) || "EXPENSE".equalsIgnoreCase(type);
+        boolean includeIncome = type == null || type.isBlank() || "ALL".equalsIgnoreCase(type)
+                || "INCOME".equalsIgnoreCase(type);
+        boolean includeExpense = type == null || type.isBlank() || "ALL".equalsIgnoreCase(type)
+                || "EXPENSE".equalsIgnoreCase(type);
 
         if (includeIncome) {
             for (Income i : incomeRepository.findByUserIdOrderByIncomeDateDescIdDesc(user.getId())) {
@@ -92,8 +93,7 @@ public class DashboardService {
                         i.getDescription(),
                         i.getAmount(),
                         i.getIncomeDate(),
-                        i.getCategory().getName()
-                ));
+                        i.getCategory().getName()));
             }
         }
 
@@ -106,8 +106,7 @@ public class DashboardService {
                         e.getDescription(),
                         e.getAmount(),
                         e.getExpenseDate(),
-                        e.getCategory().getName()
-                ));
+                        e.getCategory().getName()));
             }
         }
 
@@ -197,8 +196,7 @@ public class DashboardService {
                 periodIncomeSum.subtract(periodExpenseSum),
                 byCategory,
                 monthlyPoints,
-                trend
-        );
+                trend);
     }
 
     private double safePercentage(BigDecimal part, BigDecimal total) {
@@ -210,4 +208,3 @@ public class DashboardService {
                 .doubleValue();
     }
 }
-

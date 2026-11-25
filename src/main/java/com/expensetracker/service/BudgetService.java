@@ -20,7 +20,8 @@ public class BudgetService {
     private final ExpenseRepository expenseRepository;
     private final AuthService authService;
 
-    public BudgetService(BudgetRepository budgetRepository, ExpenseRepository expenseRepository, AuthService authService) {
+    public BudgetService(BudgetRepository budgetRepository, ExpenseRepository expenseRepository,
+            AuthService authService) {
         this.budgetRepository = budgetRepository;
         this.expenseRepository = expenseRepository;
         this.authService = authService;
@@ -47,8 +48,7 @@ public class BudgetService {
                     BigDecimal spent = expenseRepository.sumByUserIdAndDateBetween(
                             user.getId(), ym.atDay(1), ym.atEndOfMonth());
                     return new BudgetStatusResponse(
-                            null, targetMonth, BigDecimal.ZERO, spent, BigDecimal.ZERO.subtract(spent), 0.0, "NONE"
-                    );
+                            null, targetMonth, BigDecimal.ZERO, spent, BigDecimal.ZERO.subtract(spent), 0.0, "NONE");
                 });
     }
 
@@ -90,8 +90,6 @@ public class BudgetService {
                 spent,
                 remaining,
                 usagePct,
-                alertLevel
-        );
+                alertLevel);
     }
 }
-

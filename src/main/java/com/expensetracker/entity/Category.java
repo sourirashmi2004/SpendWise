@@ -58,4 +58,3 @@ public class Category {
         this.user = user;
     }
 }
-

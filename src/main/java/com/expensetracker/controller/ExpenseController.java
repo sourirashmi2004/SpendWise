@@ -41,4 +41,3 @@ public class ExpenseController {
         expenseService.delete(id);
     }
 }
-

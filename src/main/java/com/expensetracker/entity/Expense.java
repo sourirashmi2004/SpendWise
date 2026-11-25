@@ -84,4 +84,3 @@ public class Expense {
         this.user = user;
     }
 }
-
